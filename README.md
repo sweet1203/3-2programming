@@ -25,6 +25,18 @@ npm run build
 npm run preview
 ```
 
+## Vercel 배포
+
+Vercel은 **도메인 루트**(`https://프로젝트.vercel.app/`)에 올라갑니다. GitHub Pages용 `base: /3-2programming/`를 그대로 쓰면 JS·CSS가 404가 나 **빈 화면**이 됩니다.
+
+- **Root Directory:** 저장소 루트(이 폴더가 레포 루트면 비움)
+- **Framework Preset:** Vite
+- **Build Command:** `npm run build`
+- **Output Directory:** `dist`
+- `vercel.json`에 SPA 라우팅(`rewrites`)이 포함되어 있습니다.
+
+로컬·Vercel은 `base`가 `/`이고, GitHub Pages Actions 빌드만 `VITE_BASE_PATH=/3-2programming/`를 넣습니다.
+
 ## GitHub Pages 배포
 
 - 공개 URL: https://sweet1203.github.io/3-2programming/

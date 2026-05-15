@@ -23,6 +23,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          VITE_BASE_PATH: /3-2programming/
       - name: Publish dist to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:

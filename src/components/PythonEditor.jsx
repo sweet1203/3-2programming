@@ -2,29 +2,10 @@ import React, { useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { python } from '@codemirror/lang-python';
 import { oneDark } from '@codemirror/theme-one-dark';
+import CopyCodeButton from './CopyCodeButton';
 
 export default function PythonEditor({ code, setCode, starterCode, onRun, onGrade }) {
-  const [copied, setCopied] = useState(false);
   const [resetFlash, setResetFlash] = useState(false);
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(code);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1400);
-    } catch {
-      const ta = document.createElement('textarea');
-      ta.value = code;
-      ta.style.position = 'fixed';
-      ta.style.left = '-9999px';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1400);
-    }
-  };
 
   const handleReset = () => {
     if (!starterCode) return;
@@ -57,14 +38,7 @@ export default function PythonEditor({ code, setCode, starterCode, onRun, onGrad
           >
             ✅ 채점하기
           </button>
-          <button
-            type="button"
-            onClick={handleCopy}
-            className={`${pillBtn} border border-apple-border bg-transparent text-apple-graphite hover:bg-apple-surface/60`}
-            aria-label="현재 코드 복사"
-          >
-            {copied ? '복사됨 ✓' : '⧉ 복사'}
-          </button>
+          <CopyCodeButton text={code} label="현재 코드 복사" variant="toolbar" />
           {starterCode ? (
             <button
               type="button"
@@ -81,8 +55,12 @@ export default function PythonEditor({ code, setCode, starterCode, onRun, onGrad
         위쪽 이론의 코드 상자는 <strong className="text-[#eaeaea] font-medium">읽기 전용 예제</strong>입니다.
         실행·채점은 <strong className="text-[#eaeaea] font-medium">아래 편집창에서 ▶ 실행</strong>으로 하세요.
         꼬이면 <strong className="text-[#eaeaea] font-medium">↺ 처음으로</strong>를 눌러 시작 코드를 다시 불러올 수 있어요.
+        편집창 오른쪽 위 <strong className="text-[#eaeaea] font-medium">복사</strong>로 작성 중인 코드를 통째로 복사할 수 있어요.
       </p>
-      <div className="overflow-hidden rounded-b-apple bg-[#282c34]">
+      <div className="relative overflow-hidden rounded-b-apple bg-[#282c34]">
+        <div className="absolute top-2.5 right-2.5 z-10">
+          <CopyCodeButton text={code} label="에디터 코드 복사" size="sm" variant="dark" />
+        </div>
         <CodeMirror
           value={code}
           height="380px"

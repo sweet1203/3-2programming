@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import MarkdownCodeBlock from './MarkdownCodeBlock';
 
 function getTextContent(node) {
   if (node == null) return '';
@@ -116,11 +117,7 @@ export const markdownComponents = {
       {children}
     </blockquote>
   ),
-  pre: ({ children }) => (
-    <pre className="lesson-md-codeblock my-6 overflow-x-auto rounded-apple border border-black/50 bg-[#1d1d1f] p-5 text-[13px] leading-relaxed tracking-tight text-[#f5f5f7] shadow-inner [&_code]:bg-transparent [&_code]:text-[#f5f5f7]">
-      {children}
-    </pre>
-  ),
+  pre: ({ children }) => <MarkdownCodeBlock>{children}</MarkdownCodeBlock>,
   code: ({ className, children, ...props }) => {
     const isBlock = typeof className === 'string' && className.includes('language-');
     if (isBlock) {

@@ -28,8 +28,8 @@ npm run preview
 ## GitHub Pages 배포
 
 - 공개 URL: https://sweet1203.github.io/3-2programming/
-- `main` 브랜치에 push하면 [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml)이 `npm run build` 결과(`dist/`)를 Pages에 올립니다.
-- 저장소 **Settings → Pages → Build and deployment**에서 **Source**를 **GitHub Actions**로 선택해야 합니다. (예전처럼 `main` / `(root)`만 쓰면 소스 `index.html`이 올라가 앱이 비어 보입니다.)
+- `main`에 push하면 [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml)이 `npm run build` 후 **`gh-pages` 브랜치**에 `dist/`만 올립니다.
+- 저장소 **Settings → Pages**에서 **Deploy from a branch** → 브랜치 **`gh-pages`** / **`/(root)`** 로 맞춥니다. (`main` / `(root)`이면 개발용 `index.html`만 보여 화면이 비어 보입니다.)
 
 ## 라이선스
 

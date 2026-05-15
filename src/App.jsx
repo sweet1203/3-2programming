@@ -24,7 +24,8 @@ function Layout({ children }) {
             <div className="flex items-center gap-2">
               <BookOpen className="text-blue-600 h-6 w-6 shrink-0" />
               <span className="font-bold text-lg sm:text-xl tracking-tight text-gray-900">
-                파이썬 코스웨어 <span className="text-gray-500 font-normal text-sm">(3-2 알고리즘과 프로그래밍)</span>
+                Goo 쌤의 프로그래밍 수업{' '}
+                <span className="text-gray-500 font-normal text-sm">(3-2 알고리즘과 프로그래밍)</span>
               </span>
             </div>
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
@@ -44,8 +45,8 @@ function Layout({ children }) {
       <main className="flex-1 w-full pb-12">
         {children}
       </main>
-      <footer className="bg-white border-t border-gray-200 py-6 text-center text-gray-500 text-sm">
-        <p>고등학교 정보 3-2 프로그래밍 단원 실습 환경 (교사용 MD 자료와 차시 구성을 맞춤)</p>
+      <footer className="bg-white border-t border-gray-200 py-5 text-center text-gray-400 text-xs">
+        <p>-대성여고 정보쌤 제작-</p>
       </footer>
     </div>
   );

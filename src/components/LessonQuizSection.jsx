@@ -11,8 +11,7 @@ export default function LessonQuizSection({ items, description }) {
     <section className="mt-10 border-t border-gray-200 pt-10">
       <h2 className="text-2xl font-bold text-gray-900 mb-2">실습 후 퀴즈</h2>
       <p className="text-gray-600 text-sm mb-6">
-        {description ||
-          '에디터에서 실습·채점을 한 번 마친 뒤, 아래 O/X 문제를 순서대로 풀어 보세요. 각 칸은 따로 채점됩니다.'}
+        {description || '실습을 마친 뒤, 아래 O/X 문제를 순서대로 풀어 보세요.'}
       </p>
       <div className="space-y-5">
         {items.map((q, i) => (

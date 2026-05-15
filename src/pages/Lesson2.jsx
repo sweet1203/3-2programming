@@ -114,7 +114,7 @@ export default function Lesson2() {
               <li><code>print(line)</code> 한 줄 채우기 → 실행</li>
               <li><strong>채점하기</strong> 통과 후 퀴즈 3문항</li>
             </ol>
-            <p className="text-xs text-gray-600 mb-0">선택 블록은 readline 예시입니다. Colab에서는 input()까지 확장해 보세요.</p>
+            <p className="text-xs text-gray-600 mb-0">선택 블록은 readline 예시입니다. 필요하면 주석을 해제해 실행해 보세요.</p>
           </div>
         </div>
 

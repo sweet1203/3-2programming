@@ -52,9 +52,11 @@ function Layout({ children }) {
   );
 }
 
+const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, '') || undefined;
+
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={routerBasename}>
       <Layout>
         <Routes>
           <Route path="/" element={<Navigate to="/lesson/1" replace />} />

@@ -1,0 +1,123 @@
+import React, { useState, useEffect } from 'react';
+import PythonEditor from '../components/PythonEditor';
+import TerminalOutput from '../components/TerminalOutput';
+import LessonQuizSection from '../components/LessonQuizSection';
+import Lesson3Expanded from '../lessonTheory/Lesson3Expanded';
+import { executePythonCode, loadPyodideEngine } from '../utils/pyodideRunner';
+
+const LESSON3_QUIZZES = [
+  {
+    question: "data = [[1,2,3],[4,5,6]] 일 때 data[1][2]의 값은 6이다.",
+    answer: 'O',
+    explanation: '인덱스 1번 행 [4,5,6]의 2번째 열이 6이에요.',
+  },
+  {
+    question: '[1, 2, 3, 4] 는 2차원 리스트이다.',
+    answer: 'X',
+    explanation: '한 겹 리스트는 1차원이에요. [[1,2],[3,4]]처럼 리스트 안에 리스트가 있어야 2차원입니다.',
+  },
+  {
+    question: "2차원 딕셔너리 d = {'민지': {'국어': 90}} 에서 d['민지']['국어'] 로 90에 접근할 수 있다.",
+    answer: 'O',
+    explanation: '바깥 키 → 안쪽 키 순으로 접근합니다.',
+  },
+];
+
+const LESSON3_STARTER = `# ━━━━━━ [필수] 채점 미션: 2차원 리스트 좌석 ━━━━━━
+# seats[0][2], seats[1][1] 에 1을 넣어 예약 완료 표시
+# 목표 출력: 0번 줄 [0, 1, 1] / 1번 줄 [1, 1, 0]
+
+seats = [
+    [0, 1, 0],
+    [1, 0, 0],
+]
+
+seats[0][2] = 0  # TODO → 1
+seats[1][1] = 0  # TODO → 1
+
+print("0번 줄:", seats[0])
+print("1번 줄:", seats[1])
+
+# ━━━━━━ [선택] 2차원 딕셔너리 맛보기 (채점 무관) ━━━━━━
+# team = {"A조": {"점수": 88}, "B조": {"점수": 92}}
+# print("A조 점수:", team["A조"]["점수"])
+`;
+
+export default function Lesson3() {
+  const [code, setCode] = useState(LESSON3_STARTER);
+  const [output, setOutput] = useState('');
+  const [error, setError] = useState('');
+  const [gradeResult, setGradeResult] = useState(null);
+  const [isEngineReady, setIsEngineReady] = useState(false);
+
+  useEffect(() => {
+    loadPyodideEngine().then(() => setIsEngineReady(true));
+  }, []);
+
+  const handleRun = async () => {
+    setOutput('실행 중...');
+    setError('');
+    setGradeResult(null);
+    const result = await executePythonCode(code);
+    if (result.success) {
+      setOutput(result.output);
+    } else {
+      setOutput('');
+      setError(result.error);
+    }
+    return result;
+  };
+
+  const handleGrade = async () => {
+    const result = await handleRun();
+    if (!result.success) return;
+
+    const o = result.output.replace(/\r\n/g, '\n');
+    if (o.includes('[0, 1, 1]') && o.includes('[1, 1, 0]')) {
+      setGradeResult({ passed: true, message: '' });
+    } else {
+      setGradeResult({
+        passed: false,
+        message: '0번 줄 [0, 1, 1], 1번 줄 [1, 1, 0] 이 되도록 두 칸을 1로 바꾸세요.',
+      });
+    }
+  };
+
+  return (
+    <div className="max-w-5xl mx-auto p-6 bg-white rounded-xl shadow-lg mt-8">
+      <header className="mb-8 border-b pb-4">
+        <h1 className="text-3xl font-extrabold text-gray-900">3차시. 다차원 데이터</h1>
+        <p className="text-gray-600 mt-2 text-lg">
+          2차원 리스트로 표·격자를 표현하고, <code>[행][열]</code> 인덱스로 읽고 수정합니다.
+        </p>
+      </header>
+
+      <Lesson3Expanded />
+
+      <h2 className="text-2xl font-bold text-gray-900 mb-4">에디터 실습</h2>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="prose prose-blue max-w-none">
+          <div className="bg-blue-50 p-5 rounded-xl border border-blue-100 shadow-sm">
+            <h3 className="text-blue-800 font-bold mt-0">진행 순서</h3>
+            <ol className="text-sm text-gray-700 mt-2 mb-0 list-decimal pl-5 space-y-1">
+              <li>TODO 두 곳을 <strong>1</strong>로 수정 → 실행·채점</li>
+              <li>아래 퀴즈 3문항</li>
+            </ol>
+          </div>
+        </div>
+
+        <div>
+          {!isEngineReady && (
+            <div className="bg-yellow-100 text-yellow-800 p-3 rounded mb-4 text-sm animate-pulse">
+              파이썬 엔진을 불러오는 중입니다. 잠시만 기다려주세요...
+            </div>
+          )}
+          <PythonEditor code={code} setCode={setCode} onRun={handleRun} onGrade={handleGrade} />
+          <TerminalOutput output={output} error={error} gradeResult={gradeResult} />
+        </div>
+      </div>
+
+      <LessonQuizSection items={LESSON3_QUIZZES} />
+    </div>
+  );
+}

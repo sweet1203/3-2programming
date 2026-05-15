@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { python } from '@codemirror/lang-python';
+import { oneDark } from '@codemirror/theme-one-dark';
 
 export default function PythonEditor({ code, setCode, onRun, onGrade }) {
   const containerRef = useRef(null);
@@ -44,13 +45,16 @@ export default function PythonEditor({ code, setCode, onRun, onGrade }) {
           </button>
         </div>
       </div>
-      <div ref={containerRef} className="border-t border-apple-border/0">
+      <p className="bg-[#282c34] px-4 py-2 text-[11px] leading-snug text-[#c8c8cd] tracking-tight border-b border-black/40">
+        위쪽 이론의 코드 상자는 <strong className="text-[#eaeaea] font-medium">읽기 전용 예제</strong>입니다.
+        실행·채점은 <strong className="text-[#eaeaea] font-medium">아래 편집창에서 ▶ 실행</strong>으로 하세요. 필요하면 Colab 등에 옮겨 실행해도 됩니다.
+      </p>
+      <div ref={containerRef} className="overflow-hidden rounded-b-apple bg-[#282c34]">
         <CodeMirror
           value={code}
           height="380px"
-          extensions={[python()]}
+          extensions={[python(), oneDark]}
           onChange={(value) => setCode(value)}
-          theme="light"
           style={{
             fontSize: '14px',
             fontFamily:

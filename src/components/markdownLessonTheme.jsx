@@ -117,7 +117,7 @@ export const markdownComponents = {
     </blockquote>
   ),
   pre: ({ children }) => (
-    <pre className="my-6 overflow-x-auto rounded-apple border border-apple-graphite bg-apple-graphite p-5 text-[13px] leading-relaxed tracking-tight text-white/92 shadow-inner">
+    <pre className="lesson-md-codeblock my-6 overflow-x-auto rounded-apple border border-black/50 bg-[#1d1d1f] p-5 text-[13px] leading-relaxed tracking-tight text-[#f5f5f7] shadow-inner [&_code]:bg-transparent [&_code]:text-[#f5f5f7]">
       {children}
     </pre>
   ),
@@ -125,7 +125,10 @@ export const markdownComponents = {
     const isBlock = typeof className === 'string' && className.includes('language-');
     if (isBlock) {
       return (
-        <code className={`${className} block font-mono text-[13px] text-inherit`} {...props}>
+        <code
+          className={`${className} block w-full max-w-full font-mono text-[13px] !text-[#f5f5f7] !bg-transparent whitespace-pre-wrap break-words`}
+          {...props}
+        >
           {children}
         </code>
       );

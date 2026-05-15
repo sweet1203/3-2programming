@@ -95,32 +95,32 @@ export default function Lesson2() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-white rounded-xl shadow-lg mt-8">
-      <header className="mb-8 border-b pb-4">
-        <h1 className="text-3xl font-extrabold text-gray-900">2차시. 표준입출력과 파일입출력</h1>
-        <p className="text-gray-600 mt-2 text-lg">
+    <div className="max-w-5xl mx-auto p-8 sm:p-10 mt-10 mb-6 lesson-shell">
+      <header className="mb-10 border-b border-apple-border pb-6">
+        <h1 className="lesson-header-title text-3xl sm:text-[34px]">2차시. 표준입출력과 파일입출력</h1>
+        <p className="lesson-header-lead mt-3 text-lg">
           <code>print</code>로 표준 출력, <code>open</code>·<code>write</code>·<code>read</code>·<code>close</code>로 파일에 남기기.
         </p>
       </header>
 
       <Lesson2Expanded />
 
-      <h2 className="text-2xl font-bold text-gray-900 mb-4">에디터 실습</h2>
+      <h2 className="text-[24px] font-semibold text-apple-graphite tracking-tight mb-6 mt-14">에디터 실습</h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="prose prose-blue max-w-none">
-          <div className="bg-blue-50 p-5 rounded-xl border border-blue-100 shadow-sm">
-            <h3 className="text-blue-800 font-bold mt-0">진행 순서</h3>
-            <ol className="text-sm text-gray-700 mt-2 mb-3 list-decimal pl-5 space-y-1">
+        <div className="max-w-none">
+          <div className="rounded-apple border border-apple-border bg-apple-surface/50 p-[15px]">
+            <h3 className="text-apple-graphite font-semibold mt-0 text-[17px] tracking-tight">진행 순서</h3>
+            <ol className="text-[14px] text-apple-deep mt-3 mb-3 list-decimal pl-5 space-y-2 leading-relaxed">
               <li><code>print(line)</code> 한 줄 채우기 → 실행</li>
               <li><strong>채점하기</strong> 통과 후 퀴즈 3문항</li>
             </ol>
-            <p className="text-xs text-gray-600 mb-0">선택 블록은 readline 예시입니다. 필요하면 주석을 해제해 실행해 보세요.</p>
+            <p className="text-[12px] text-apple-charcoal mb-0">선택 블록은 readline 예시입니다. 필요하면 주석을 해제해 실행해 보세요.</p>
           </div>
         </div>
 
         <div>
           {!isEngineReady && (
-            <div className="bg-yellow-100 text-yellow-800 p-3 rounded mb-4 text-sm animate-pulse">
+            <div className="mb-4 rounded-apple border border-apple-border bg-apple-surface p-3 text-[13px] text-apple-charcoal animate-pulse">
               파이썬 엔진을 불러오는 중입니다. 잠시만 기다려주세요...
             </div>
           )}

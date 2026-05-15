@@ -24,32 +24,38 @@ export default function PythonEditor({ code, setCode, onRun, onGrade }) {
   }, []);
 
   return (
-    <div className="flex flex-col border border-gray-300 rounded-lg overflow-hidden shadow-sm">
-      <div className="bg-gray-100 px-4 py-2 flex justify-between items-center border-b border-gray-300">
-        <span className="text-sm font-semibold text-gray-700">🐍 파이썬 코드 에디터</span>
-        <div className="flex gap-2">
+    <div className="flex flex-col overflow-hidden rounded-apple border border-apple-border bg-apple-white shadow-none">
+      <div className="bg-apple-surface/80 px-4 py-2.5 flex flex-wrap gap-3 justify-between items-center border-b border-apple-border">
+        <span className="text-[13px] font-semibold text-apple-graphite tracking-tight">🐍 파이썬 코드 에디터</span>
+        <div className="flex gap-2.5 flex-wrap justify-end">
           <button
+            type="button"
             onClick={onRun}
-            className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-1.5 rounded-md text-sm font-bold flex items-center transition-colors"
+            className="min-h-[32px] px-[21px] py-[11px] rounded-[980px] text-[13px] font-semibold tracking-tight border border-apple-action text-apple-action bg-transparent hover:bg-apple-interactive/[0.06] transition-colors"
           >
             ▶ 실행
           </button>
           <button
+            type="button"
             onClick={onGrade}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 rounded-md text-sm font-bold flex items-center transition-colors"
+            className="min-h-[32px] px-[21px] py-[11px] rounded-[980px] text-[13px] font-semibold tracking-tight text-apple-white bg-apple-interactive hover:bg-[#0077ED] transition-colors shadow-none"
           >
             ✅ 채점하기
           </button>
         </div>
       </div>
-      <div ref={containerRef} className="bg-white">
+      <div ref={containerRef} className="border-t border-apple-border/0">
         <CodeMirror
           value={code}
           height="380px"
           extensions={[python()]}
           onChange={(value) => setCode(value)}
           theme="light"
-          style={{ fontSize: '16px', fontFamily: 'monospace' }}
+          style={{
+            fontSize: '14px',
+            fontFamily:
+              'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+          }}
         />
       </div>
     </div>

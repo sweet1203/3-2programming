@@ -12,26 +12,28 @@ function getTextContent(node) {
 
 const inlineMarkdownComponents = {
   p: ({ children }) => <>{children}</>,
-  strong: ({ children }) => <strong className="font-semibold text-slate-800">{children}</strong>,
+  strong: ({ children }) => <strong className="font-semibold text-apple-graphite">{children}</strong>,
 };
 
 export const markdownComponents = {
   h1: ({ children }) => (
-    <h1 className="text-xl font-bold text-slate-900 mt-0 mb-4 pb-2 border-b border-slate-200">{children}</h1>
+    <h1 className="mt-0 mb-4 pb-3 text-[34px] font-semibold text-apple-graphite tracking-tight leading-none border-b border-apple-border">
+      {children}
+    </h1>
   ),
   h2: ({ children }) => {
     const isAssignment = String(children).includes('레슨 과제');
     return (
       <h2
         data-section={isAssignment ? 'assignment' : undefined}
-        className="text-lg font-bold text-slate-800 mt-8 mb-3"
+        className="mt-10 mb-3 text-[24px] font-semibold text-apple-graphite tracking-tight leading-snug first:mt-0"
       >
         {children}
       </h2>
     );
   },
   h3: ({ children }) => (
-    <h3 className="text-base font-semibold text-slate-800 mt-5 mb-2">{children}</h3>
+    <h3 className="mt-6 mb-2 text-[18px] font-semibold text-apple-graphite tracking-tight leading-snug">{children}</h3>
   ),
   p: ({ children }) => {
     const text = getTextContent(children);
@@ -43,13 +45,19 @@ export const markdownComponents = {
     ) : (
       children
     );
-    return <p className="text-slate-700 text-sm leading-relaxed mb-3">{content}</p>;
+    return (
+      <p className="mb-4 text-[14px] leading-[1.47] tracking-[-0.18px] text-apple-deep last:mb-0">{content}</p>
+    );
   },
   ul: ({ children }) => (
-    <ul className="list-disc pl-5 mb-4 space-y-1 text-slate-700 text-sm">{children}</ul>
+    <ul className="mb-6 list-disc space-y-2 pl-5 text-[14px] leading-snug tracking-[-0.18px] text-apple-deep last:mb-0">
+      {children}
+    </ul>
   ),
   ol: ({ children }) => (
-    <ol className="list-decimal pl-5 mb-4 space-y-1 text-slate-700 text-sm">{children}</ol>
+    <ol className="mb-6 list-decimal space-y-2 pl-5 text-[14px] leading-snug tracking-[-0.18px] text-apple-deep last:mb-0">
+      {children}
+    </ol>
   ),
   li: ({ children }) => {
     const text = getTextContent(children);
@@ -63,15 +71,15 @@ export const markdownComponents = {
     );
     return <li className="leading-relaxed">{content}</li>;
   },
-  strong: ({ children }) => <strong className="font-semibold text-slate-800">{children}</strong>,
+  strong: ({ children }) => <strong className="font-semibold text-apple-graphite">{children}</strong>,
   table: ({ children }) => (
-    <div className="overflow-x-auto my-4">
-      <table className="w-full border-collapse text-sm">{children}</table>
+    <div className="my-6 overflow-x-auto rounded-apple border border-apple-border">
+      <table className="w-full border-collapse bg-apple-white text-[14px]">{children}</table>
     </div>
   ),
-  thead: ({ children }) => <thead className="bg-slate-100">{children}</thead>,
+  thead: ({ children }) => <thead className="bg-apple-surface/90">{children}</thead>,
   tbody: ({ children }) => <tbody>{children}</tbody>,
-  tr: ({ children }) => <tr className="border-b border-slate-200">{children}</tr>,
+  tr: ({ children }) => <tr className="border-b border-apple-border last:border-0">{children}</tr>,
   th: ({ children }) => {
     const text = getTextContent(children);
     const needsParse = typeof text === 'string' && /\*\*[^*]*\*\*/.test(text);
@@ -83,7 +91,9 @@ export const markdownComponents = {
       children
     );
     return (
-      <th className="border border-slate-200 px-3 py-2 text-left font-semibold text-slate-800">{content}</th>
+      <th className="border-r border-apple-border px-3 py-2.5 text-left text-[13px] font-semibold text-apple-graphite last:border-r-0">
+        {content}
+      </th>
     );
   },
   td: ({ children }) => {
@@ -96,14 +106,18 @@ export const markdownComponents = {
     ) : (
       children
     );
-    return <td className="border border-slate-200 px-3 py-2 text-slate-700">{content}</td>;
+    return (
+      <td className="border-r border-apple-border px-3 py-2.5 text-apple-deep last:border-r-0">{content}</td>
+    );
   },
-  hr: () => <hr className="my-6 border-slate-200" />,
+  hr: () => <hr className="my-10 border-apple-border" />,
   blockquote: ({ children }) => (
-    <blockquote className="pl-4 border-l-4 border-blue-300 text-slate-600 text-sm my-3">{children}</blockquote>
+    <blockquote className="my-6 border-l-4 border-apple-interactive/[0.45] bg-apple-surface/45 pl-4 py-3 text-[13px] text-apple-charcoal leading-relaxed">
+      {children}
+    </blockquote>
   ),
   pre: ({ children }) => (
-    <pre className="my-4 overflow-x-auto rounded-xl border border-slate-700 bg-slate-900 p-4 text-sm leading-relaxed text-slate-100 shadow-inner">
+    <pre className="my-6 overflow-x-auto rounded-apple border border-apple-graphite bg-apple-graphite p-5 text-[13px] leading-relaxed tracking-tight text-white/92 shadow-inner">
       {children}
     </pre>
   ),
@@ -117,22 +131,32 @@ export const markdownComponents = {
       );
     }
     return (
-      <code className="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[0.85em] text-slate-800" {...props}>
+      <code
+        className="rounded-md bg-apple-surface px-1.5 py-0.5 font-mono text-[0.9em] text-apple-graphite"
+        {...props}
+      >
         {children}
       </code>
     );
   },
   a: ({ href, children }) => (
-    <a href={href} className="text-blue-600 underline hover:text-blue-800" target="_blank" rel="noreferrer">
+    <a
+      href={href}
+      className="font-medium text-apple-action underline decoration-apple-action/35 underline-offset-2 hover:text-apple-interactive"
+      target="_blank"
+      rel="noreferrer"
+    >
       {children}
     </a>
   ),
   details: ({ children }) => (
-    <details className="my-3 rounded-lg border border-slate-200 bg-slate-50 p-3 text-sm text-slate-700 open:shadow-sm">
+    <details className="my-4 rounded-apple border border-apple-border bg-apple-white p-4 text-[14px] text-apple-deep open:bg-apple-surface/35">
       {children}
     </details>
   ),
   summary: ({ children }) => (
-    <summary className="cursor-pointer select-none font-medium text-slate-800 marker:text-slate-500">{children}</summary>
+    <summary className="cursor-pointer select-none font-medium text-apple-graphite marker:text-apple-medium">
+      {children}
+    </summary>
   ),
 };

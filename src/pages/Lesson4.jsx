@@ -99,27 +99,27 @@ export default function Lesson4() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-white rounded-xl shadow-lg mt-8">
-      <header className="mb-8 border-b pb-4">
-        <h1 className="text-3xl font-extrabold text-gray-900">4차시. 제어 구조의 응용</h1>
-        <p className="text-gray-600 mt-2 text-lg">
+    <div className="max-w-5xl mx-auto p-8 sm:p-10 mt-10 mb-6 lesson-shell">
+      <header className="mb-10 border-b border-apple-border pb-6">
+        <h1 className="lesson-header-title text-3xl sm:text-[34px]">4차시. 제어 구조의 응용</h1>
+        <p className="lesson-header-lead mt-3 text-lg">
           if·for·range를 묶어 쓰고, 자주 쓰는 문장은 <code>def</code> 함수로 빼기.
         </p>
       </header>
 
       <Lesson4Expanded />
 
-      <h2 className="text-2xl font-bold text-gray-900 mb-4">에디터 실습</h2>
+      <h2 className="text-[24px] font-semibold text-apple-graphite tracking-tight mb-6 mt-14">에디터 실습</h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="prose prose-blue max-w-none">
-          <div className="bg-blue-50 p-5 rounded-xl border border-blue-100 shadow-sm">
-            <h3 className="text-blue-800 font-bold mt-0">진행 순서</h3>
-            <ol className="text-sm text-gray-700 mt-2 mb-3 list-decimal pl-5 space-y-1">
+        <div className="max-w-none">
+          <div className="rounded-apple border border-apple-border bg-apple-surface/50 p-[15px]">
+            <h3 className="text-apple-graphite font-semibold mt-0 text-[17px] tracking-tight">진행 순서</h3>
+            <ol className="text-[14px] text-apple-deep mt-3 mb-3 list-decimal pl-5 space-y-2 leading-relaxed">
               <li><code>greet</code>의 <code>return</code>만 f-string으로 완성</li>
               <li>실행·채점 후 퀴즈 3문항</li>
             </ol>
-            <h3 className="text-blue-800 font-bold mt-4">미션 요약</h3>
-            <ul className="text-sm text-gray-700 mt-2 mb-0 list-disc pl-5 space-y-1">
+            <h3 className="text-apple-graphite font-semibold mt-6 text-[17px] tracking-tight">미션 요약</h3>
+            <ul className="text-[14px] text-apple-deep mt-3 mb-0 list-disc pl-5 space-y-2 leading-relaxed">
               <li>아래 <code>for</code> / <code>if</code>는 그대로 두고 출력 형식을 확인합니다.</li>
               <li>선택 블록은 while 맛보기입니다.</li>
             </ul>
@@ -128,7 +128,7 @@ export default function Lesson4() {
 
         <div>
           {!isEngineReady && (
-            <div className="bg-yellow-100 text-yellow-800 p-3 rounded mb-4 text-sm animate-pulse">
+            <div className="mb-4 rounded-apple border border-apple-border bg-apple-surface p-3 text-[13px] text-apple-charcoal animate-pulse">
               파이썬 엔진을 불러오는 중입니다. 잠시만 기다려주세요...
             </div>
           )}

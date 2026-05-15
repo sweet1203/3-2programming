@@ -84,22 +84,22 @@ export default function Lesson3() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-white rounded-xl shadow-lg mt-8">
-      <header className="mb-8 border-b pb-4">
-        <h1 className="text-3xl font-extrabold text-gray-900">3차시. 다차원 데이터</h1>
-        <p className="text-gray-600 mt-2 text-lg">
+    <div className="max-w-5xl mx-auto p-8 sm:p-10 mt-10 mb-6 lesson-shell">
+      <header className="mb-10 border-b border-apple-border pb-6">
+        <h1 className="lesson-header-title text-3xl sm:text-[34px]">3차시. 다차원 데이터</h1>
+        <p className="lesson-header-lead mt-3 text-lg">
           2차원 리스트로 표·격자를 표현하고, <code>[행][열]</code> 인덱스로 읽고 수정합니다.
         </p>
       </header>
 
       <Lesson3Expanded />
 
-      <h2 className="text-2xl font-bold text-gray-900 mb-4">에디터 실습</h2>
+      <h2 className="text-[24px] font-semibold text-apple-graphite tracking-tight mb-6 mt-14">에디터 실습</h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="prose prose-blue max-w-none">
-          <div className="bg-blue-50 p-5 rounded-xl border border-blue-100 shadow-sm">
-            <h3 className="text-blue-800 font-bold mt-0">진행 순서</h3>
-            <ol className="text-sm text-gray-700 mt-2 mb-0 list-decimal pl-5 space-y-1">
+        <div className="max-w-none">
+          <div className="rounded-apple border border-apple-border bg-apple-surface/50 p-[15px]">
+            <h3 className="text-apple-graphite font-semibold mt-0 text-[17px] tracking-tight">진행 순서</h3>
+            <ol className="text-[14px] text-apple-deep mt-3 mb-0 list-decimal pl-5 space-y-2 leading-relaxed">
               <li>TODO 두 곳을 <strong>1</strong>로 수정 → 실행·채점</li>
               <li>아래 퀴즈 3문항</li>
             </ol>
@@ -108,7 +108,7 @@ export default function Lesson3() {
 
         <div>
           {!isEngineReady && (
-            <div className="bg-yellow-100 text-yellow-800 p-3 rounded mb-4 text-sm animate-pulse">
+            <div className="mb-4 rounded-apple border border-apple-border bg-apple-surface p-3 text-[13px] text-apple-charcoal animate-pulse">
               파이썬 엔진을 불러오는 중입니다. 잠시만 기다려주세요...
             </div>
           )}

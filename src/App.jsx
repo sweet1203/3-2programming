@@ -17,23 +17,25 @@ const nav = [
 
 function Layout({ children }) {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <nav className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-10">
+    <div className="min-h-screen bg-apple-canvas flex flex-col text-apple-deep">
+      <nav className="sticky top-0 z-10 bg-apple-white/95 backdrop-blur-sm border-b border-apple-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 py-3 sm:h-auto sm:py-0 sm:min-h-[4rem]">
-            <div className="flex items-center gap-2">
-              <BookOpen className="text-blue-600 h-6 w-6 shrink-0" />
-              <span className="font-bold text-lg sm:text-xl tracking-tight text-gray-900">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 py-3 sm:h-auto sm:py-0 sm:min-h-[3.75rem]">
+            <div className="flex items-center gap-2.5">
+              <BookOpen className="text-apple-interactive h-6 w-6 shrink-0 stroke-[1.5]" aria-hidden />
+              <span className="font-semibold text-[17px] sm:text-[19px] tracking-tight text-apple-graphite">
                 Goo 쌤의 프로그래밍 수업{' '}
-                <span className="text-gray-500 font-normal text-sm">(3-2 알고리즘과 프로그래밍)</span>
+                <span className="text-apple-charcoal font-normal text-[13px] sm:text-[14px] tracking-tight ml-1">
+                  (3-2 알고리즘과 프로그래밍)
+                </span>
               </span>
             </div>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 sm:gap-x-4">
               {nav.map(({ to, label }) => (
                 <Link
                   key={to}
                   to={to}
-                  className="text-gray-600 hover:text-blue-600 font-medium text-sm transition-colors whitespace-nowrap"
+                  className="text-[14px] font-normal text-apple-graphite hover:text-apple-interactive px-2 py-1.5 rounded-full transition-colors tracking-tight"
                 >
                   {label}
                 </Link>
@@ -42,10 +44,8 @@ function Layout({ children }) {
           </div>
         </div>
       </nav>
-      <main className="flex-1 w-full pb-12">
-        {children}
-      </main>
-      <footer className="bg-white border-t border-gray-200 py-5 text-center text-gray-400 text-xs">
+      <main className="flex-1 w-full pb-14">{children}</main>
+      <footer className="bg-apple-white border-t border-apple-border py-6 text-center text-apple-medium text-[12px] tracking-tight leading-normal">
         <p>-대성여고 정보쌤 제작-</p>
       </footer>
     </div>

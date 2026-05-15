@@ -97,28 +97,28 @@ export default function Lesson1() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-white rounded-xl shadow-lg mt-8">
-      <header className="mb-8 border-b pb-4">
-        <h1 className="text-3xl font-extrabold text-gray-900">1차시. 변수와 자료형</h1>
-        <p className="text-gray-600 mt-2 text-lg">
+    <div className="max-w-5xl mx-auto p-8 sm:p-10 mt-10 mb-6 lesson-shell">
+      <header className="mb-10 border-b border-apple-border pb-6">
+        <h1 className="lesson-header-title text-3xl sm:text-[34px]">1차시. 변수와 자료형</h1>
+        <p className="lesson-header-lead mt-3 text-lg">
           값을 담는 변수, int·float·str·bool, 리스트·딕셔너리와 <code>type()</code>으로 자료형 확인하기.
         </p>
       </header>
 
       <Lesson1Expanded />
 
-      <h2 className="text-2xl font-bold text-gray-900 mb-4">에디터 실습</h2>
+      <h2 className="text-[24px] font-semibold text-apple-graphite tracking-tight mb-6 mt-14">에디터 실습</h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="prose prose-blue max-w-none">
-          <div className="bg-blue-50 p-5 rounded-xl border border-blue-100 shadow-sm">
-            <h3 className="text-blue-800 font-bold mt-0">진행 순서</h3>
-            <ol className="text-sm text-gray-700 mt-2 mb-3 list-decimal pl-5 space-y-1">
+        <div className="max-w-none">
+          <div className="rounded-apple border border-apple-border bg-apple-surface/50 p-[15px]">
+            <h3 className="text-apple-graphite font-semibold mt-0 text-[17px] tracking-tight">진행 순서</h3>
+            <ol className="text-[14px] text-apple-deep mt-3 mb-3 list-decimal pl-5 space-y-2 leading-relaxed">
               <li><strong>실행</strong>으로 출력 확인</li>
               <li><strong>채점하기</strong>로 필수 미션 통과 여부 확인</li>
               <li>맨 아래 <strong>실습 후 퀴즈</strong> 3문항 풀기</li>
             </ol>
-            <h3 className="text-blue-800 font-bold mt-4">미션 요약</h3>
-            <ul className="text-sm text-gray-700 mt-2 mb-0 list-disc pl-5 space-y-1">
+            <h3 className="text-apple-graphite font-semibold mt-6 text-[17px] tracking-tight">미션 요약</h3>
+            <ul className="text-[14px] text-apple-deep mt-3 mb-0 list-disc pl-5 space-y-2 leading-relaxed">
               <li><code>next_grade</code> → 내년 학년 숫자</li>
               <li><code>scores[&apos;국어&apos;]</code> → 수학 점수가 나오게 키 수정</li>
               <li>선택 블록은 채점과 무관하게 실험만 하면 됩니다.</li>
@@ -128,7 +128,7 @@ export default function Lesson1() {
 
         <div>
           {!isEngineReady && (
-            <div className="bg-yellow-100 text-yellow-800 p-3 rounded mb-4 text-sm animate-pulse">
+            <div className="mb-4 rounded-apple border border-apple-border bg-apple-surface p-3 text-[13px] text-apple-charcoal animate-pulse">
               파이썬 엔진을 불러오는 중입니다. 잠시만 기다려주세요...
             </div>
           )}

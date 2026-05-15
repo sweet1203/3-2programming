@@ -93,27 +93,27 @@ export default function Lesson5() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-white rounded-xl shadow-lg mt-8">
-      <header className="mb-8 border-b pb-4">
-        <h1 className="text-3xl font-extrabold text-gray-900">5차시. 객체와 클래스</h1>
-        <p className="text-gray-600 mt-2 text-lg">
+    <div className="max-w-5xl mx-auto p-8 sm:p-10 mt-10 mb-6 lesson-shell">
+      <header className="mb-10 border-b border-apple-border pb-6">
+        <h1 className="lesson-header-title text-3xl sm:text-[34px]">5차시. 객체와 클래스</h1>
+        <p className="lesson-header-lead mt-3 text-lg">
           클래스는 설계도, 객체는 그 설계도로 만든 실체. <code>__init__</code>과 <code>self</code>, 메서드로 동작을 붙입니다.
         </p>
       </header>
 
       <Lesson5Expanded />
 
-      <h2 className="text-2xl font-bold text-gray-900 mb-4">에디터 실습</h2>
+      <h2 className="text-[24px] font-semibold text-apple-graphite tracking-tight mb-6 mt-14">에디터 실습</h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="prose prose-blue max-w-none">
-          <div className="bg-blue-50 p-5 rounded-xl border border-blue-100 shadow-sm">
-            <h3 className="text-blue-800 font-bold mt-0">진행 순서</h3>
-            <ol className="text-sm text-gray-700 mt-2 mb-3 list-decimal pl-5 space-y-1">
+        <div className="max-w-none">
+          <div className="rounded-apple border border-apple-border bg-apple-surface/50 p-[15px]">
+            <h3 className="text-apple-graphite font-semibold mt-0 text-[17px] tracking-tight">진행 순서</h3>
+            <ol className="text-[14px] text-apple-deep mt-3 mb-3 list-decimal pl-5 space-y-2 leading-relaxed">
               <li><code>status_text</code>만 분기 작성 → 실행·채점</li>
               <li>퀴즈 3문항</li>
             </ol>
-            <h3 className="text-blue-800 font-bold mt-4">미션 요약</h3>
-            <ul className="text-sm text-gray-700 mt-2 mb-0 list-disc pl-5 space-y-1">
+            <h3 className="text-apple-graphite font-semibold mt-6 text-[17px] tracking-tight">미션 요약</h3>
+            <ul className="text-[14px] text-apple-deep mt-3 mb-0 list-disc pl-5 space-y-2 leading-relaxed">
               <li><code>self.is_borrowed</code>로 대여 상태를 나눕니다.</li>
               <li>선택 블록으로 인스턴스를 하나 더 만들어 볼 수 있어요.</li>
             </ul>
@@ -122,7 +122,7 @@ export default function Lesson5() {
 
         <div>
           {!isEngineReady && (
-            <div className="bg-yellow-100 text-yellow-800 p-3 rounded mb-4 text-sm animate-pulse">
+            <div className="mb-4 rounded-apple border border-apple-border bg-apple-surface p-3 text-[13px] text-apple-charcoal animate-pulse">
               파이썬 엔진을 불러오는 중입니다. 잠시만 기다려주세요...
             </div>
           )}

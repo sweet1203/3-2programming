@@ -5,7 +5,7 @@ import { markdownComponents } from './markdownLessonTheme';
 
 export default function MarkdownLessonBody({ markdown }) {
   return (
-    <div className="lesson-markdown text-slate-700 max-w-none">
+    <div className="lesson-markdown text-apple-deep max-w-none">
       <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
         {markdown}
       </ReactMarkdown>

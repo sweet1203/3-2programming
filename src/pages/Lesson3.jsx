@@ -23,24 +23,19 @@ const LESSON3_QUIZZES = [
   },
 ];
 
-const LESSON3_STARTER = `# ━━━━━━ [필수] 채점 미션: 2차원 리스트 좌석 ━━━━━━
-# seats[0][2], seats[1][1] 에 1을 넣어 예약 완료 표시
-# 목표 출력: 0번 줄 [0, 1, 1] / 1번 줄 [1, 1, 0]
+const LESSON3_STARTER = `# ━━━━━━ [필수] 채점 미션 ━━━━━━
+# seats[0][2], seats[1][1] 을 1로 바꾸세요.
 
 seats = [
     [0, 1, 0],
     [1, 0, 0],
 ]
 
-seats[0][2] = 0  # TODO → 1
-seats[1][1] = 0  # TODO → 1
+seats[0][2] = 0  # TODO: 1
+seats[1][1] = 0  # TODO: 1
 
-print("0번 줄:", seats[0])
-print("1번 줄:", seats[1])
-
-# ━━━━━━ [선택] 2차원 딕셔너리 맛보기 (채점 무관) ━━━━━━
-# team = {"A조": {"점수": 88}, "B조": {"점수": 92}}
-# print("A조 점수:", team["A조"]["점수"])
+print(seats[0])
+print(seats[1])
 `;
 
 export default function Lesson3() {
@@ -112,7 +107,13 @@ export default function Lesson3() {
               파이썬 엔진을 불러오는 중입니다. 잠시만 기다려주세요...
             </div>
           )}
-          <PythonEditor code={code} setCode={setCode} onRun={handleRun} onGrade={handleGrade} />
+          <PythonEditor
+            code={code}
+            setCode={setCode}
+            starterCode={LESSON3_STARTER}
+            onRun={handleRun}
+            onGrade={handleGrade}
+          />
           <TerminalOutput output={output} error={error} gradeResult={gradeResult} />
         </div>
       </div>

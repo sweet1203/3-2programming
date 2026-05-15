@@ -27,11 +27,10 @@ const LESSON4_QUIZZES = [
 ];
 
 const LESSON4_STARTER = `# ━━━━━━ [필수] 채점 미션 ━━━━━━
-# greet() 의 return 만 f-string 으로 완성하세요.
-# 아래 for / if 블록은 수정하지 마세요.
+# greet()의 return만 f-string으로 완성하세요.
 
 def greet(name):
-    return "수정하세요"  # TODO: 예) f"안녕, {name}님!"
+    return "수정하세요"  # TODO: 예) return f"안녕, {name}님!"
 
 print(greet("파이썬"))
 
@@ -40,12 +39,6 @@ for i in range(1, 4):
         print(i, "→ 짝수")
     else:
         print(i, "→ 홀수")
-
-# ━━━━━━ [선택] while 예시 (채점 무관, #만 지우고 실행) ━━━━━━
-# n = 3
-# while n > 0:
-#     print("카운트다운:", n)
-#     n -= 1
 `;
 
 export default function Lesson4() {
@@ -132,7 +125,13 @@ export default function Lesson4() {
               파이썬 엔진을 불러오는 중입니다. 잠시만 기다려주세요...
             </div>
           )}
-          <PythonEditor code={code} setCode={setCode} onRun={handleRun} onGrade={handleGrade} />
+          <PythonEditor
+            code={code}
+            setCode={setCode}
+            starterCode={LESSON4_STARTER}
+            onRun={handleRun}
+            onGrade={handleGrade}
+          />
           <TerminalOutput output={output} error={error} gradeResult={gradeResult} />
         </div>
       </div>

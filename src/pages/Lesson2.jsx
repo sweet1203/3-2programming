@@ -23,16 +23,13 @@ const LESSON2_QUIZZES = [
   },
 ];
 
-const LESSON2_STARTER = `# ━━━━━━ [필수] 채점 미션: 표준 출력 + 파일 저장·읽기 ━━━━━━
-# ① 아래 빈 줄에 print(line) 을 넣어 화면에 한 번 출력
-# ② 이후 코드는 그대로 두고 실행 → 같은 문장이 파일에서도 읽혀야 함
+const LESSON2_STARTER = `# ━━━━━━ [필수] 채점 미션 ━━━━━━
+# TODO: 아래 빈 줄에 print(line) 한 줄 추가
 
 line = "2026-05-15: 파이썬 파일 입출력 연습"
 
-# (1) 여기에 print(line) 한 줄 작성
+# 여기에 print(line)
 
-
-# (2) 파일에 쓰고 다시 읽기
 f = open("diary.txt", "w", encoding="utf-8")
 f.write(line)
 f.close()
@@ -42,12 +39,6 @@ content = f2.read()
 f2.close()
 
 print("파일에서 읽은 내용:", content)
-
-# ━━━━━━ [선택] readline 연습 (채점 무관) ━━━━━━
-# f3 = open("diary.txt", "r", encoding="utf-8")
-# first = f3.readline()
-# print("첫 줄만:", repr(first))
-# f3.close()
 `;
 
 export default function Lesson2() {
@@ -124,7 +115,13 @@ export default function Lesson2() {
               파이썬 엔진을 불러오는 중입니다. 잠시만 기다려주세요...
             </div>
           )}
-          <PythonEditor code={code} setCode={setCode} onRun={handleRun} onGrade={handleGrade} />
+          <PythonEditor
+            code={code}
+            setCode={setCode}
+            starterCode={LESSON2_STARTER}
+            onRun={handleRun}
+            onGrade={handleGrade}
+          />
           <TerminalOutput output={output} error={error} gradeResult={gradeResult} />
         </div>
       </div>

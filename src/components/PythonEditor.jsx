@@ -1,28 +1,42 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { python } from '@codemirror/lang-python';
 import { oneDark } from '@codemirror/theme-one-dark';
 
-export default function PythonEditor({ code, setCode, onRun, onGrade }) {
-  const containerRef = useRef(null);
+export default function PythonEditor({ code, setCode, starterCode, onRun, onGrade }) {
+  const [copied, setCopied] = useState(false);
+  const [resetFlash, setResetFlash] = useState(false);
 
-  // 브라우저 기본 붙여넣기 이벤트 가로채기
-  useEffect(() => {
-    const handlePaste = (e) => {
-      e.preventDefault();
-      alert('🚫 선생님 팁: 코드는 직접 타이핑해야 진짜 내 실력이 됩니다! 천천히 따라 쳐보세요.');
-    };
-
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener('paste', handlePaste, true);
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1400);
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = code;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1400);
     }
-    return () => {
-      if (container) {
-        container.removeEventListener('paste', handlePaste, true);
-      }
-    };
-  }, []);
+  };
+
+  const handleReset = () => {
+    if (!starterCode) return;
+    const ok = window.confirm('처음 실습 코드로 되돌릴까요? 지금까지 수정한 내용은 사라집니다.');
+    if (!ok) return;
+    setCode(starterCode);
+    setResetFlash(true);
+    setTimeout(() => setResetFlash(false), 1400);
+  };
+
+  const pillBtn =
+    'min-h-[32px] px-[18px] py-[11px] rounded-[980px] text-[13px] font-semibold tracking-tight transition-colors';
 
   return (
     <div className="flex flex-col overflow-hidden rounded-apple border border-apple-border bg-apple-white shadow-none">
@@ -32,24 +46,43 @@ export default function PythonEditor({ code, setCode, onRun, onGrade }) {
           <button
             type="button"
             onClick={onRun}
-            className="min-h-[32px] px-[21px] py-[11px] rounded-[980px] text-[13px] font-semibold tracking-tight border border-apple-action text-apple-action bg-transparent hover:bg-apple-interactive/[0.06] transition-colors"
+            className={`${pillBtn} border border-apple-action text-apple-action bg-transparent hover:bg-apple-interactive/[0.06]`}
           >
             ▶ 실행
           </button>
           <button
             type="button"
             onClick={onGrade}
-            className="min-h-[32px] px-[21px] py-[11px] rounded-[980px] text-[13px] font-semibold tracking-tight text-apple-white bg-apple-interactive hover:bg-[#0077ED] transition-colors shadow-none"
+            className={`${pillBtn} px-[21px] text-apple-white bg-apple-interactive hover:bg-[#0077ED]`}
           >
             ✅ 채점하기
           </button>
+          <button
+            type="button"
+            onClick={handleCopy}
+            className={`${pillBtn} border border-apple-border bg-transparent text-apple-graphite hover:bg-apple-surface/60`}
+            aria-label="현재 코드 복사"
+          >
+            {copied ? '복사됨 ✓' : '⧉ 복사'}
+          </button>
+          {starterCode ? (
+            <button
+              type="button"
+              onClick={handleReset}
+              className={`${pillBtn} border border-apple-border bg-transparent text-apple-charcoal hover:bg-apple-surface/60`}
+              aria-label="처음 실습 코드로 되돌리기"
+            >
+              {resetFlash ? '되돌림 ✓' : '↺ 처음으로'}
+            </button>
+          ) : null}
         </div>
       </div>
       <p className="bg-[#282c34] px-4 py-2 text-[11px] leading-snug text-[#c8c8cd] tracking-tight border-b border-black/40">
         위쪽 이론의 코드 상자는 <strong className="text-[#eaeaea] font-medium">읽기 전용 예제</strong>입니다.
-        실행·채점은 <strong className="text-[#eaeaea] font-medium">아래 편집창에서 ▶ 실행</strong>으로 하세요. 필요하면 Colab 등에 옮겨 실행해도 됩니다.
+        실행·채점은 <strong className="text-[#eaeaea] font-medium">아래 편집창에서 ▶ 실행</strong>으로 하세요.
+        꼬이면 <strong className="text-[#eaeaea] font-medium">↺ 처음으로</strong>를 눌러 시작 코드를 다시 불러올 수 있어요.
       </p>
-      <div ref={containerRef} className="overflow-hidden rounded-b-apple bg-[#282c34]">
+      <div className="overflow-hidden rounded-b-apple bg-[#282c34]">
         <CodeMirror
           value={code}
           height="380px"

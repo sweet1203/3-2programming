@@ -23,30 +23,19 @@ const LESSON1_QUIZZES = [
   },
 ];
 
-const LESSON1_STARTER = `# ━━━━━━ [필수] 채점 미션 — 아래만 고쳐서 "채점하기" ━━━━━━
-# ① next_grade: 지금 2학년 → 내년 학년(정수)
-# ② scores[...] : 수학 점수 92가 나오도록 키 수정
+const LESSON1_STARTER = `# ━━━━━━ [필수] 채점 미션 ━━━━━━
+# ① next_grade를 3으로 바꾸기
+# ② scores['국어']를 scores['수학']으로 바꾸기
 
 class_name = "정보2반"
-student_count = 25
-avg_height = 162.5
-is_club_day = False
-
 colors = ['빨', '주', '노', '초']
 scores = {'국어': 88, '수학': 92}
+next_grade = 2  # TODO: 3
 
-next_grade = 2  # TODO: 3으로 바꾸기
-
-print("반:", class_name, "→ 자료형:", type(class_name).__name__)
-print("학생 수:", student_count, "→", type(student_count).__name__)
-print("첫 색:", colors[0], "수학:", scores['국어'])  # TODO: '수학' 키로
-print("내년 학년:", next_grade, "→", type(next_grade).__name__)
-
-# ━━━━━━ [선택] 자유 실행 — 채점과 무관, #만 지우고 실행해 보세요 ━━━━━━
-# subjects = ["정보", "수학", "체육"]
-# print("과목 개수:", len(subjects))
-# unique = {"정보", "수학", "정보"}  # set — 중복은 한 번만
-# print("집합:", unique)
+print("반 자료형:", type(class_name).__name__)        # str
+print("내년 학년 자료형:", type(next_grade).__name__) # int
+print("첫 색:", colors[0], "수학:", scores['국어'])  # TODO: '수학'
+print("내년 학년 값:", next_grade)                   # TODO가 반영되면 3이 나와야 합니다.
 `;
 
 export default function Lesson1() {
@@ -132,7 +121,13 @@ export default function Lesson1() {
               파이썬 엔진을 불러오는 중입니다. 잠시만 기다려주세요...
             </div>
           )}
-          <PythonEditor code={code} setCode={setCode} onRun={handleRun} onGrade={handleGrade} />
+          <PythonEditor
+            code={code}
+            setCode={setCode}
+            starterCode={LESSON1_STARTER}
+            onRun={handleRun}
+            onGrade={handleGrade}
+          />
           <TerminalOutput output={output} error={error} gradeResult={gradeResult} />
         </div>
       </div>

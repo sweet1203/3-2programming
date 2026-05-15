@@ -24,8 +24,8 @@ const LESSON5_QUIZZES = [
   },
 ];
 
-const LESSON5_STARTER = `# ━━━━━━ [필수] 채점 미션: Book 클래스 ━━━━━━
-# status_text() 만 수정하세요. True → "대여중", False → "대여가능"
+const LESSON5_STARTER = `# ━━━━━━ [필수] 채점 미션 ━━━━━━
+# status_text()만 완성하세요.
 
 class Book:
     def __init__(self, title, is_borrowed):
@@ -33,17 +33,13 @@ class Book:
         self.is_borrowed = is_borrowed
 
     def status_text(self):
-        return "여기를 수정"  # TODO
+        return "여기를 수정"  # TODO: True → "대여중", False → "대여가능"
 
 b1 = Book("정보 교과서", True)
 b2 = Book("파이썬 입문", False)
 
 print(b1.title, "→", b1.status_text())
 print(b2.title, "→", b2.status_text())
-
-# ━━━━━━ [선택] 같은 클래스, 다른 인스턴스 (채점 무관) ━━━━━━
-# b3 = Book("수학 문제집", False)
-# print(b3.title, b3.is_borrowed)
 `;
 
 export default function Lesson5() {
@@ -126,7 +122,13 @@ export default function Lesson5() {
               파이썬 엔진을 불러오는 중입니다. 잠시만 기다려주세요...
             </div>
           )}
-          <PythonEditor code={code} setCode={setCode} onRun={handleRun} onGrade={handleGrade} />
+          <PythonEditor
+            code={code}
+            setCode={setCode}
+            starterCode={LESSON5_STARTER}
+            onRun={handleRun}
+            onGrade={handleGrade}
+          />
           <TerminalOutput output={output} error={error} gradeResult={gradeResult} />
         </div>
       </div>

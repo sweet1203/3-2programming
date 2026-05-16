@@ -7,39 +7,39 @@ import { executePythonCode, loadPyodideEngine } from '../utils/pyodideRunner';
 
 const LESSON5_QUIZZES = [
   {
-    question: "파이썬에서 클래스로부터 만든 실체를 '클래스'라 부르고, 설계도 자체를 '객체'라 부른다.",
+    question: "클래스(Class)는 설계도이고, 객체(Object)는 그 설계도로 만든 실제 결과물이다.",
+    answer: 'O',
+    explanation: '맞아요! 붕어빵 틀이 클래스, 틀로 만든 붕어빵이 객체예요.',
+  },
+  {
+    question: '__init__ 메소드는 객체를 만들 때 자동으로 실행된다.',
+    answer: 'O',
+    explanation: '맞아요. Dog("초코", 3) 처럼 객체를 만들면 __init__이 자동 실행되어 속성이 저장됩니다.',
+  },
+  {
+    question: '같은 클래스로 만든 두 객체는 항상 같은 속성 값을 가진다.',
     answer: 'X',
-    explanation:
-      '설계도는 클래스(Class), 그 설계도로 만든 실체가 객체·인스턴스(Object)입니다. 용어가 바뀌어 있어요.',
-  },
-  {
-    question: '인스턴스 메서드를 정의할 때 첫 번째 매개변수로 self를 두는 것이 관례이다.',
-    answer: 'O',
-    explanation: '맞아요. 인스턴스 자신을 첫 인자로 받는 관례입니다.',
-  },
-  {
-    question: '같은 클래스로 만든 서로 다른 인스턴스는 서로 다른 속성 값을 가질 수 있다.',
-    answer: 'O',
-    explanation: '맞아요. 각 객체의 self.title 등이 독립적으로 저장됩니다.',
+    explanation: '아니에요! Dog("초코", 3)과 Dog("두부", 5)는 같은 클래스지만 이름과 나이가 달라요. 각 객체는 독립적이에요.',
   },
 ];
 
 const LESSON5_STARTER = `# ━━━━━━ [필수] 채점 미션 ━━━━━━
-# status_text()만 완성하세요.
+# introduce() 메소드만 완성하세요!
+# 출력 예시: "안녕! 나는 2학년 민지야."
 
-class Book:
-    def __init__(self, title, is_borrowed):
-        self.title = title
-        self.is_borrowed = is_borrowed
+class Student:
+    def __init__(self, name, grade):
+        self.name = name
+        self.grade = grade
 
-    def status_text(self):
-        return "여기를 수정"  # TODO: True → "대여중", False → "대여가능"
+    def introduce(self):
+        print("여기를 수정하세요")  # TODO: self.grade와 self.name 활용하기
 
-b1 = Book("정보 교과서", True)
-b2 = Book("파이썬 입문", False)
+s1 = Student("민지", 2)
+s2 = Student("서연", 1)
 
-print(b1.title, "→", b1.status_text())
-print(b2.title, "→", b2.status_text())
+s1.introduce()   # 안녕! 나는 2학년 민지야.
+s2.introduce()   # 안녕! 나는 1학년 서연야.
 `;
 
 export default function Lesson5() {
@@ -73,17 +73,18 @@ export default function Lesson5() {
 
     const o = result.output.trim().replace(/\r\n/g, '\n');
     const ok =
-      o.includes('정보 교과서') &&
-      o.includes('대여중') &&
-      o.includes('파이썬 입문') &&
-      o.includes('대여가능');
+      o.includes('민지') &&
+      o.includes('서연') &&
+      o.includes('2') &&
+      o.includes('1') &&
+      !o.includes('여기를 수정하세요');
     if (ok) {
       setGradeResult({ passed: true, message: '' });
     } else {
       setGradeResult({
         passed: false,
         message:
-          'status_text 안에서 self.is_borrowed가 True면 "대여중", False면 "대여가능"을 return 하도록 작성해 보세요.',
+          'introduce() 안에서 print(f"안녕! 나는 {self.grade}학년 {self.name}야.") 처럼 self.grade와 self.name을 활용해 보세요.',
       });
     }
   };
@@ -93,7 +94,7 @@ export default function Lesson5() {
       <header className="mb-10 border-b border-apple-border pb-6">
         <h1 className="lesson-header-title text-3xl sm:text-[34px]">5차시. 객체와 클래스</h1>
         <p className="lesson-header-lead mt-3 text-lg">
-          클래스는 설계도, 객체는 그 설계도로 만든 실체. <code>__init__</code>과 <code>self</code>, 메서드로 동작을 붙입니다.
+          클래스는 붕어빵 틀, 객체는 그 틀로 만든 붕어빵! <code>__init__</code>으로 속성을 저장하고, 메소드로 동작을 만들어요.
         </p>
       </header>
 
@@ -105,13 +106,13 @@ export default function Lesson5() {
           <div className="rounded-apple border border-apple-border bg-apple-surface/50 p-[15px]">
             <h3 className="text-apple-graphite font-semibold mt-0 text-[17px] tracking-tight">진행 순서</h3>
             <ol className="text-[14px] text-apple-deep mt-3 mb-3 list-decimal pl-5 space-y-2 leading-relaxed">
-              <li><code>status_text</code>만 분기 작성 → 실행·채점</li>
+              <li><code>introduce()</code> 메소드 완성 → 실행·채점</li>
               <li>퀴즈 3문항</li>
             </ol>
             <h3 className="text-apple-graphite font-semibold mt-6 text-[17px] tracking-tight">미션 요약</h3>
             <ul className="text-[14px] text-apple-deep mt-3 mb-0 list-disc pl-5 space-y-2 leading-relaxed">
-              <li><code>self.is_borrowed</code>로 대여 상태를 나눕니다.</li>
-              <li>선택 블록으로 인스턴스를 하나 더 만들어 볼 수 있어요.</li>
+              <li><code>self.grade</code>와 <code>self.name</code>을 활용해 자기소개를 출력하세요.</li>
+              <li>힌트: <code>print(f"안녕! 나는 {"{self.grade}"}학년 {"{self.name}"}야.")</code></li>
             </ul>
           </div>
         </div>

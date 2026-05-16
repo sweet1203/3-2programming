@@ -7,22 +7,19 @@ import { executePythonCode, loadPyodideEngine } from '../utils/pyodideRunner';
 
 const LESSON4_QUIZZES = [
   {
-    question:
-      "while문은 '횟수가 정해진 반복'에만 쓸 수 있고, 횟수가 정해진 경우에는 for를 쓸 수 없다.",
-    answer: 'X',
-    explanation:
-      '횟수가 정해졌을 때는 for가 편하고, 조건만 알 때는 while이 자주 쓰입니다. 서로 바꿔 쓸 수도 있어요.',
-  },
-  {
-    question: 'if-elif-elif 구조에서, 맨 위 if의 조건이 참이면 아래 elif 블록들도 모두 검사되어 실행될 수 있다.',
-    answer: 'X',
-    explanation:
-      '맨 위 if가 참이면 같은 체인의 elif는 건너뜁니다. elif는 위 조건들이 거짓일 때만 순서대로 검사돼요.',
-  },
-  {
-    question: 'range(3)은 0, 1, 2를 순서대로 돌린다.',
+    question: 'def로 만든 함수는 한 번 정의하면 여러 번 이름만 불러서 재사용할 수 있다.',
     answer: 'O',
-    explanation: '맞아요. 기본 시작값 0, 끝은 미포함이라 0~2입니다.',
+    explanation: '맞아요! 함수의 가장 큰 장점이에요. say_hi("민지"), say_hi("서연") 처럼 이름만 바꿔서 계속 쓸 수 있어요.',
+  },
+  {
+    question: 'if-elif 구조에서, 맨 위 if의 조건이 참이면 아래 elif도 함께 실행된다.',
+    answer: 'X',
+    explanation: '맨 위 if가 참이면 아래 elif는 건너뜁니다. if-elif는 딱 하나만 실행돼요.',
+  },
+  {
+    question: 'range(1, 5)는 1, 2, 3, 4를 만들고 5는 포함되지 않는다.',
+    answer: 'O',
+    explanation: '맞아요! range(시작, 끝)에서 끝 값은 항상 포함되지 않아요. "끝 직전까지"라고 외우세요.',
   },
 ];
 
@@ -96,7 +93,7 @@ export default function Lesson4() {
       <header className="mb-10 border-b border-apple-border pb-6">
         <h1 className="lesson-header-title text-3xl sm:text-[34px]">4차시. 제어 구조의 응용</h1>
         <p className="lesson-header-lead mt-3 text-lg">
-          if·for·range를 묶어 쓰고, 자주 쓰는 문장은 <code>def</code> 함수로 빼기.
+          <code>if</code>로 조건 판단, <code>for</code>·<code>range()</code>로 반복, 자주 쓰는 코드는 <code>def</code> 함수로 묶어서 재사용하기.
         </p>
       </header>
 
@@ -108,13 +105,15 @@ export default function Lesson4() {
           <div className="rounded-apple border border-apple-border bg-apple-surface/50 p-[15px]">
             <h3 className="text-apple-graphite font-semibold mt-0 text-[17px] tracking-tight">진행 순서</h3>
             <ol className="text-[14px] text-apple-deep mt-3 mb-3 list-decimal pl-5 space-y-2 leading-relaxed">
-              <li><code>greet</code>의 <code>return</code>만 f-string으로 완성</li>
-              <li>실행·채점 후 퀴즈 3문항</li>
+              <li><code>greet</code> 함수의 <code>return</code>만 완성하기</li>
+              <li><strong>실행</strong>으로 출력 확인 → <strong>채점하기</strong></li>
+              <li>퀴즈 3문항</li>
             </ol>
             <h3 className="text-apple-graphite font-semibold mt-6 text-[17px] tracking-tight">미션 요약</h3>
             <ul className="text-[14px] text-apple-deep mt-3 mb-0 list-disc pl-5 space-y-2 leading-relaxed">
-              <li>아래 <code>for</code> / <code>if</code>는 그대로 두고 출력 형식을 확인합니다.</li>
-              <li>선택 블록은 while 맛보기입니다.</li>
+              <li>힌트: <code>return f"안녕, {"{name}"}님!"</code> 형태로 작성</li>
+              <li>아래 <code>for</code>/<code>if</code> 블록은 건드리지 않아도 돼요</li>
+              <li>채점 통과하면 구구단 실습도 도전해 보세요! 🎯</li>
             </ul>
           </div>
         </div>

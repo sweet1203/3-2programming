@@ -24,16 +24,21 @@ const LESSON2_QUIZZES = [
 ];
 
 const LESSON2_STARTER = `# ━━━━━━ [필수] 채점 미션 ━━━━━━
-# TODO: 아래 빈 줄에 print(line) 한 줄 추가
+# TODO: 아래 빈 칸에 print(line) 한 줄을 추가하세요!
+# 힌트: print(변수이름) 형태로 쓰면 변수 값이 화면에 출력돼요.
 
 line = "2026-05-15: 파이썬 파일 입출력 연습"
 
-# 여기에 print(line)
+# ↓ 여기에 print(line) 추가!
 
+
+# [아래는 수정하지 않아도 돼요] ─────────────────
+# 1단계: 파일에 쓰기 (w 모드)
 f = open("diary.txt", "w", encoding="utf-8")
 f.write(line)
 f.close()
 
+# 2단계: 파일에서 읽기 (r 모드)
 f2 = open("diary.txt", "r", encoding="utf-8")
 content = f2.read()
 f2.close()
@@ -90,7 +95,7 @@ export default function Lesson2() {
       <header className="mb-10 border-b border-apple-border pb-6">
         <h1 className="lesson-header-title text-3xl sm:text-[34px]">2차시. 표준입출력과 파일입출력</h1>
         <p className="lesson-header-lead mt-3 text-lg">
-          <code>print</code>로 표준 출력, <code>open</code>·<code>write</code>·<code>read</code>·<code>close</code>로 파일에 남기기.
+          <code>input()</code>·<code>print()</code>로 화면 입출력, <code>open()</code>·<code>write()</code>·<code>read()</code>·<code>close()</code>로 파일에 영구 저장하기.
         </p>
       </header>
 
@@ -102,10 +107,16 @@ export default function Lesson2() {
           <div className="rounded-apple border border-apple-border bg-apple-surface/50 p-[15px]">
             <h3 className="text-apple-graphite font-semibold mt-0 text-[17px] tracking-tight">진행 순서</h3>
             <ol className="text-[14px] text-apple-deep mt-3 mb-3 list-decimal pl-5 space-y-2 leading-relaxed">
-              <li><code>print(line)</code> 한 줄 채우기 → 실행</li>
+              <li>TODO 위치에 <code>print(line)</code> 추가</li>
+              <li><strong>실행</strong>으로 같은 문장이 두 번 출력되는지 확인</li>
               <li><strong>채점하기</strong> 통과 후 퀴즈 3문항</li>
             </ol>
-            <p className="text-[12px] text-apple-charcoal mb-0">선택 블록은 readline 예시입니다. 필요하면 주석을 해제해 실행해 보세요.</p>
+            <h3 className="text-apple-graphite font-semibold mt-4 text-[17px] tracking-tight">미션 요약</h3>
+            <ul className="text-[14px] text-apple-deep mt-2 mb-0 list-disc pl-5 space-y-1 leading-relaxed">
+              <li>화면 출력: <code>print(line)</code> 으로 직접 출력</li>
+              <li>파일 저장 후 읽기: 아래 코드가 자동 처리해요</li>
+              <li>같은 문장이 총 2번 출력되면 통과!</li>
+            </ul>
           </div>
         </div>
 
